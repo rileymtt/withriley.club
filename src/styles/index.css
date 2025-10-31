@@ -1,3 +1,35 @@
-body {
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
   margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  position: absolute;
+  left: 20px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(149, 152, 160, 0.3);
+  visibility: hidden;
+}
+:hover::-webkit-scrollbar-thumb {
+  visibility: visible;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(149, 152, 160, 0.5);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
 }
