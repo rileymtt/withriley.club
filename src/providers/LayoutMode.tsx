@@ -16,7 +16,9 @@ import {
 import Cloud from "components/Cloud";
 import Footer from "components/Footer";
 import React from "react";
+import { Link as RouterLink } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+
 export const ColorModeContext = React.createContext({
   toggleColorMode: () => {},
 });
@@ -47,6 +49,7 @@ export default function LayoutMode({ children }: any) {
   const theme = React.useMemo(
     () =>
       createTheme({
+        // add body background image for light and dark mode
         palette: {
           mode,
         },
@@ -60,12 +63,7 @@ export default function LayoutMode({ children }: any) {
         <CssBaseline />
         <ToastContainer theme={mode} />
         <Cloud />
-        <Box
-          sx={{
-            bgcolor: "background.default",
-          }}
-          component={"div"}
-        >
+        <Box component={"div"}>
           <Grid container spacing={10}>
             <Grid item xs={12}>
               <Container maxWidth="md">
@@ -75,15 +73,18 @@ export default function LayoutMode({ children }: any) {
                   sx={{ my: 5, mt: 5 }}
                   alignItems={"center"}
                 >
-                  <Link href="/" underline="none" color="inherit">
+                  <RouterLink
+                    to="/"
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
                     <Typography variant="h4">Riley.</Typography>
-                  </Link>
+                  </RouterLink>
                   <Stack direction={"row"} alignItems={"center"}>
-                    <Link href="/trading" underline="none" color="inherit">
+                    <RouterLink to="/trading">
                       <IconButton>
                         <CurrencyExchangeIcon />
                       </IconButton>
-                    </Link>
+                    </RouterLink>
                     <Link href="https://github.com/rileymtt" target="_blank">
                       <IconButton>
                         <GitHub />

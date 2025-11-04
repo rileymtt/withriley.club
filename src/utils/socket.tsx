@@ -16,7 +16,8 @@ export const initSocket = (accessKey: string | null) => {
       reconnectionDelay: 500,
       reconnectionDelayMax: 10000,
       timeout: 10000,
-      path: "/wfb/socket.io",
+      // path: "/wfb/socket.io",
+      path: process.env.REACT_APP_WS_PATH || "/socket.io",
     };
 
     socket = io(AppConfig.WS, socketOptions);

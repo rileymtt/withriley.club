@@ -28,7 +28,7 @@ type TBinancePosition = {
   openOrderInitialMargin: string;
   positionAmt: string;
   positionInitialMargin: string;
-  positionSide: string;
+  positionSide: "LONG" | "SHORT";
   symbol: string;
   unRealizedProfit: string;
   updateTime: number;
@@ -56,4 +56,11 @@ type TBinanceOrder = {
   time: number;
   updateTime: number;
   workingType: string;
+}
+type TSettings = {
+  balance: number;
+  positionLimit: number;
+  leverage: number;
+  interval: string;
+  status: boolean;
 }

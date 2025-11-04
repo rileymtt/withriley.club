@@ -2,7 +2,6 @@ import { Box, Container, Grid, Typography } from "@mui/material";
 import BlurryLoadingImage from "components/BlurryLoadingImage";
 import quotes from "data/quotes";
 import LayoutMode from "providers/LayoutMode";
-import "styles/index.css";
 
 const images1 = [
   "/images/image1.jpeg",

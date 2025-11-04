@@ -17,10 +17,10 @@ export default function MarginRatio() {
   const marginRatioColor =
     marginRatio !== "N/A"
       ? parseFloat(marginRatio) < 50
-        ? "green"
+        ? "var(--green)"
         : parseFloat(marginRatio) < 80
         ? "orange"
-        : "red"
+        : "var(--red)"
       : "inherit";
 
   return (
@@ -32,7 +32,12 @@ export default function MarginRatio() {
       >
         <Box>
           <Typography color="text.secondary">Margin ratio</Typography>
-          <Typography variant="h4" sx={{ my: 1 }} color={marginRatioColor} fontWeight={900}>
+          <Typography
+            variant="h4"
+            sx={{ my: 1 }}
+            color={marginRatioColor}
+            fontWeight={900}
+          >
             {marginRatio}
           </Typography>
           <Typography color="text.secondary">

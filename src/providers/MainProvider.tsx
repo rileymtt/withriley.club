@@ -4,12 +4,22 @@ type AppState = {
   account: TBinanceBalance | null;
   positions: TBinancePosition[];
   orders: TBinanceOrder[];
+  settings: TSettings;
+  selectedPosition: TBinancePosition | null;
 };
 
 const initialState: AppState = {
   account: null,
   positions: [],
   orders: [],
+  settings: {
+    balance: 0,
+    positionLimit: 0,
+    leverage: 0,
+    interval: "4h",
+    status: false,
+  },
+  selectedPosition: null,
 };
 
 type TAction = "UPDATE";

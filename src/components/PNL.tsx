@@ -6,7 +6,7 @@ export default function PNL() {
   const pnl = account?.totalUnrealizedProfit
     ? parseFloat(account.totalUnrealizedProfit)
     : 0;
-  const pnlColor = pnl >= 0 ? "green" : "red";
+  const pnlColor = pnl >= 0 ? "var(--green)" : "var(--red)";
   const roi = account?.totalMarginBalance
     ? (pnl / parseFloat(account.totalMarginBalance)) * 100
     : 0;
@@ -19,7 +19,12 @@ export default function PNL() {
       >
         <Box>
           <Typography color="text.secondary">PNL</Typography>
-          <Typography variant="h4" sx={{ my: 1 }} color={pnlColor} fontWeight={900}>
+          <Typography
+            variant="h4"
+            sx={{ my: 1 }}
+            color={pnlColor}
+            fontWeight={900}
+          >
             {pnl >= 0 ? "+" : ""}
             {pnl.toFixed(2)}
           </Typography>

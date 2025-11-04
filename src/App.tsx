@@ -1,5 +1,6 @@
 import { MainProvider } from "providers/MainProvider";
 import Router from "routes";
+import "styles/index.scss";
 
 function App() {
   return (

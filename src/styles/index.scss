@@ -33,3 +33,15 @@ input[type="number"] {
 ::-webkit-scrollbar-corner {
   background: transparent;
 }
+
+:root {
+  --green: #00c853;
+  --red: #d50000;
+}
+
+.green-text {
+  color: var(--green) !important;
+}
+.red-text {
+  color: var(--red) !important;
+}

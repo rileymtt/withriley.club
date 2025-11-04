@@ -7,15 +7,22 @@ export default function Cloud() {
 
   React.useEffect(() => {
     initSocket(null);
-    socket.on("positions_update", ({ account, positions, history, orders }) => {
-      console.log({account, positions, history, orders});
-      
-      update({ account, positions, orders: orders || [] });
-      const pnl = parseFloat(account?.totalUnrealizedProfit || "0");
-      document.title = `${pnl > 0 ? "+" : ""}${pnl.toFixed(
-        2
-      )} | WFB - Woff Futures Trading Bot`;
-    });
+    socket.on(
+      "positions_update",
+      ({ account, positions, orders, settings }) => {
+        console.log("positions_update", {
+          account,
+          positions,
+          orders,
+          settings,
+        });
+        update({ account, positions, orders: orders || [], settings });
+        const pnl = parseFloat(account?.totalUnrealizedProfit || "0");
+        document.title = `${pnl > 0 ? "+" : ""}${pnl.toFixed(
+          2
+        )} | WFB - Woff Futures Trading Bot`;
+      }
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

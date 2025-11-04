@@ -4,9 +4,9 @@ import React from "react";
 export default function PercentNumberComponent(props: { value: number }) {
   const color = React.useMemo(() => {
     if (props.value > 0) {
-      return "green";
+      return "var(--green)";
     } else if (props.value < 0) {
-      return "red";
+      return "var(--red)";
     } else {
       return "unset";
     }
