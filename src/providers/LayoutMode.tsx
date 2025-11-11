@@ -31,7 +31,14 @@ function loadMode() {
   return localStorage.getItem("colorMode") === "dark" ? "dark" : "light";
 }
 
-export default function LayoutMode({ children }: any) {
+export default function LayoutMode({
+  children,
+  ...props
+}: {
+  children: React.ReactNode;
+  notUseHeader?: boolean;
+  notUseFooter?: boolean;
+}) {
   const [mode, setMode] = React.useState<"light" | "dark">(loadMode());
   const colorMode = React.useMemo(
     () => ({
@@ -65,53 +72,57 @@ export default function LayoutMode({ children }: any) {
         <Cloud />
         <Box component={"div"}>
           <Grid container spacing={10}>
-            <Grid item xs={12}>
-              <Container maxWidth="md">
-                <Stack
-                  direction={"row"}
-                  justifyContent={"space-between"}
-                  sx={{ my: 5, mt: 5 }}
-                  alignItems={"center"}
-                >
-                  <RouterLink
-                    to="/"
-                    style={{ textDecoration: "none", color: "inherit" }}
+            {!props.notUseHeader && (
+              <Grid item xs={12}>
+                <Container maxWidth="md">
+                  <Stack
+                    direction={"row"}
+                    justifyContent={"space-between"}
+                    sx={{ my: 5, mt: 5 }}
+                    alignItems={"center"}
                   >
-                    <Typography variant="h4">Riley.</Typography>
-                  </RouterLink>
-                  <Stack direction={"row"} alignItems={"center"}>
-                    <RouterLink to="/trading">
-                      <IconButton>
-                        <CurrencyExchangeIcon />
-                      </IconButton>
-                    </RouterLink>
-                    <Link href="https://github.com/rileymtt" target="_blank">
-                      <IconButton>
-                        <GitHub />
-                      </IconButton>
-                    </Link>
-                    <Link
-                      href="https://www.linkedin.com/in/riley-tran-a19b331b0/"
-                      target="_blank"
+                    <RouterLink
+                      to="/"
+                      style={{ textDecoration: "none", color: "inherit" }}
                     >
-                      <IconButton>
-                        <LinkedIn />
+                      <Typography variant="h4">Riley.</Typography>
+                    </RouterLink>
+                    <Stack direction={"row"} alignItems={"center"}>
+                      <RouterLink to="/trading">
+                        <IconButton>
+                          <CurrencyExchangeIcon />
+                        </IconButton>
+                      </RouterLink>
+                      <Link href="https://github.com/rileymtt" target="_blank">
+                        <IconButton>
+                          <GitHub />
+                        </IconButton>
+                      </Link>
+                      <Link
+                        href="https://www.linkedin.com/in/riley-tran-a19b331b0/"
+                        target="_blank"
+                      >
+                        <IconButton>
+                          <LinkedIn />
+                        </IconButton>
+                      </Link>
+                      <IconButton onClick={colorMode.toggleColorMode}>
+                        {mode === "dark" ? <NightsStay /> : <WbSunny />}
                       </IconButton>
-                    </Link>
-                    <IconButton onClick={colorMode.toggleColorMode}>
-                      {mode === "dark" ? <NightsStay /> : <WbSunny />}
-                    </IconButton>
+                    </Stack>
                   </Stack>
-                </Stack>
-                <Divider />
-              </Container>
-            </Grid>
+                  <Divider />
+                </Container>
+              </Grid>
+            )}
             <Grid item xs={12}>
               {children}
             </Grid>
-            <Grid item xs={12}>
-              <Footer />
-            </Grid>
+            {!props.notUseFooter && (
+              <Grid item xs={12}>
+                <Footer />
+              </Grid>
+            )}
           </Grid>
         </Box>
       </ThemeProvider>

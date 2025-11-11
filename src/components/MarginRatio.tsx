@@ -16,10 +16,10 @@ export default function MarginRatio() {
       : "N/A";
   const marginRatioColor =
     marginRatio !== "N/A"
-      ? parseFloat(marginRatio) < 50
+      ? parseFloat(marginRatio) < 5
         ? "var(--green)"
-        : parseFloat(marginRatio) < 80
-        ? "orange"
+        : parseFloat(marginRatio) < 10
+        ? "#FFA726"
         : "var(--red)"
       : "inherit";
 

@@ -7,7 +7,9 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Typography,
 } from "@mui/material";
+import moment from "moment";
 import { MainProvider } from "providers/MainProvider";
 import React from "react";
 
@@ -39,7 +41,7 @@ export default function PositionsDesktop() {
         },
       }}
     >
-      <TableContainer component={Paper} sx={{ height: 540 }} variant="outlined">
+      <TableContainer component={Paper} sx={{ height: 680 }} variant="outlined">
         <Table aria-label="simple table" stickyHeader>
           <TableHead>
             <TableRow>
@@ -106,10 +108,47 @@ export default function PositionsDesktop() {
                   sx={{
                     "&:last-child td, &:last-child th": { border: 0 },
                     position: "relative",
+                    td: { zIndex: 1, position: "relative" },
+                    "&:after": {
+                      content: '""',
+                      position: "absolute",
+                      height: "100%",
+                      ...(roi > 0 ? { left: 0 } : { right: 0 }),
+                      top: 0,
+                      opacity: 0.1,
+                      zIndex: 0,
+                      width: roi > 0 ? `${tpPercent}%` : `${slPercent}%`,
+                      bgcolor: roi > 0 ? "var(--green)" : "var(--red)",
+                    },
                   }}
-                  onClick={() => handleRowClick(row)}
                 >
-                  <TableCell align="left">{row.symbol}</TableCell>
+                  <TableCell
+                    align="left"
+                    onClick={() => handleRowClick(row)}
+                    sx={{ cursor: "pointer" }}
+                  >
+                    {row.symbol.replace("USDT", "")} <br />
+                    <Typography fontSize={8}>
+                      {moment(row.updateTime).fromNow()}
+                    </Typography>
+                    <Box
+                      position={"absolute"}
+                      height={"90%"}
+                      width={2}
+                      bgcolor={
+                        row.positionSide === "LONG"
+                          ? "var(--green)"
+                          : "var(--red)"
+                      }
+                      left={0}
+                      top={"50%"}
+                      sx={{
+                        transform: "translateY(-50%)",
+                      }}
+                      borderRadius={2}
+                      zIndex={0}
+                    />
+                  </TableCell>
                   <TableCell align="right">
                     {Number(row.initialMargin).toFixed(2)}
                   </TableCell>
@@ -149,56 +188,6 @@ export default function PositionsDesktop() {
                     </TableCell> */}
                   <TableCell align="right">{tpUSDT}</TableCell>
                   <TableCell align="right">{slUSDT}</TableCell>
-                  {/* <TableCell align="right">
-                    {moment(row.updateTime).fromNow()}
-                  </TableCell> */}
-                  {roi > 0 && (
-                    <Box
-                      sx={{
-                        position: "absolute",
-                        height: "100%",
-                        width: `${tpPercent}%`,
-                        backgroundColor: "var(--green)",
-                        zIndex: 1,
-                        top: 0,
-                        left: 0,
-                        opacity: 0.1,
-                      }}
-                      component={"td"}
-                    />
-                  )}
-                  {roi < 0 && (
-                    <Box
-                      sx={{
-                        position: "absolute",
-                        height: "100%",
-                        width: `${slPercent}%`,
-                        backgroundColor: "var(--red)",
-                        zIndex: 1,
-                        top: 0,
-                        right: 0,
-                        opacity: 0.1,
-                      }}
-                      component={"td"}
-                    />
-                  )}
-                  <Box
-                    position={"absolute"}
-                    height={"80%"}
-                    width={2}
-                    bgcolor={
-                      row.positionSide === "LONG"
-                        ? "var(--green)"
-                        : "var(--red)"
-                    }
-                    left={0}
-                    top={"50%"}
-                    sx={{
-                      transform: "translateY(-50%)",
-                    }}
-                    borderRadius={2}
-                    component={"td"}
-                  />
                 </TableRow>
               );
             })}

@@ -1,3 +1,4 @@
+import moment from "moment";
 import React from "react";
 import { MainProvider } from "../providers/MainProvider";
 import { initSocket, socket } from "../utils/socket";
@@ -16,7 +17,13 @@ export default function Cloud() {
           orders,
           settings,
         });
-        update({ account, positions, orders: orders || [], settings });
+        update({
+          account,
+          positions,
+          orders: orders || [],
+          settings,
+          lastUpdated: moment(),
+        });
         const pnl = parseFloat(account?.totalUnrealizedProfit || "0");
         document.title = `${pnl > 0 ? "+" : ""}${pnl.toFixed(
           2

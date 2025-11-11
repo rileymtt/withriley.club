@@ -7,7 +7,7 @@ function TradingViewWidget() {
   const { selectedPosition } = MainProvider.useState();
 
   useEffect(() => {
-    if (!selectedPosition) return;
+    if (!selectedPosition?.symbol) return;
     const script = document.createElement("script");
     container.current.innerHTML = "";
     script.src =
@@ -24,7 +24,7 @@ function TradingViewWidget() {
           "hide_legend": false,
           "hide_volume": false,
           "hotlist": false,
-          "interval": "15",
+          "interval": "4H",
           "locale": "en",
           "save_image": true,
           "style": "1",
@@ -40,7 +40,7 @@ function TradingViewWidget() {
           "autosize": true
         }`;
     container.current.appendChild(script);
-  }, [selectedPosition]);
+  }, [selectedPosition?.symbol]);
 
   return (
     <div

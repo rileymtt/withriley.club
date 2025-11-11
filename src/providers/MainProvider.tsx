@@ -1,3 +1,4 @@
+import moment from "moment";
 import React from "react";
 
 type AppState = {
@@ -6,6 +7,7 @@ type AppState = {
   orders: TBinanceOrder[];
   settings: TSettings;
   selectedPosition: TBinancePosition | null;
+  lastUpdated: moment.Moment;
 };
 
 const initialState: AppState = {
@@ -20,6 +22,7 @@ const initialState: AppState = {
     status: false,
   },
   selectedPosition: null,
+  lastUpdated: moment(),
 };
 
 type TAction = "UPDATE";

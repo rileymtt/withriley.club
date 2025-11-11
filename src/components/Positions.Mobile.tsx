@@ -89,12 +89,6 @@ export default function PositionsMobile() {
             <Grid container>
               <Grid item xs={4}>
                 <Typography sx={{ opacity: 0.8, fontSize: 12 }}>
-                  Entry
-                </Typography>
-                <Typography fontWeight={600}>{row.entryPrice}</Typography>
-              </Grid>
-              <Grid item xs={4}>
-                <Typography sx={{ opacity: 0.8, fontSize: 12 }}>
                   PNL (USDT)
                 </Typography>
                 <Typography
@@ -105,6 +99,7 @@ export default function PositionsMobile() {
                   {pnl.toFixed(2)}
                 </Typography>
               </Grid>
+              <Grid xs={4}></Grid>
               <Grid item xs={4}>
                 <Typography
                   textAlign={"right"}
@@ -126,32 +121,7 @@ export default function PositionsMobile() {
               <Grid item xs={4}>
                 <Typography sx={{ opacity: 0.8, fontSize: 12 }}>SL</Typography>
                 <Typography fontWeight={600}>
-                  {slOrder ? slOrder.stopPrice : "--"}
-                </Typography>
-              </Grid>
-              <Grid item xs={4}>
-                <Typography sx={{ opacity: 0.8, fontSize: 12 }}>
-                  Mark
-                </Typography>
-                <Typography fontWeight={600}>{row.markPrice}</Typography>
-              </Grid>
-              <Grid item xs={4}>
-                <Typography
-                  textAlign={"right"}
-                  sx={{ opacity: 0.8, fontSize: 12 }}
-                >
-                  TP
-                </Typography>
-                <Typography textAlign={"right"} fontWeight={600}>
-                  {tpOrder ? tpOrder.stopPrice : "--"}
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid container>
-              <Grid item xs={4}>
-                <Typography sx={{ opacity: 0.8, fontSize: 12 }}>%SL</Typography>
-                <Typography fontWeight={600}>
-                  {roi < 0 ? `${slPercent.toFixed(2)}%` : "--"}
+                  {slUSDT} ({slPercent.toFixed(2)}%)
                 </Typography>
               </Grid>
               <Grid item xs={4}></Grid>
@@ -160,10 +130,10 @@ export default function PositionsMobile() {
                   textAlign={"right"}
                   sx={{ opacity: 0.8, fontSize: 12 }}
                 >
-                  %TP
+                  TP
                 </Typography>
                 <Typography textAlign={"right"} fontWeight={600}>
-                  {tpOrder ? tpPercent.toFixed(2) + "%" : "--"}
+                  {tpUSDT} ({tpPercent.toFixed(2)}%)
                 </Typography>
               </Grid>
             </Grid>
